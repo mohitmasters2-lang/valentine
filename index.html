@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    overflow: hidden;
+  }
+
+  .card {
+    position: relative;
+    background: white;
+    padding: 50px 60px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+
+  h1 {
+    color: #ff4d6d;
+    margin-bottom: 10px;
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #yes {
+    background: #ff4d6d;
+    color: white;
+    margin-right: 20px;
+  }
+
+  #yes:hover {
+    transform: scale(1.15);
+  }
+
+  #no {
+    background: #ddd;
+    position: absolute;
+    left: 55%;
+    top: 65%;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px white; }
+    to { text-shadow: 0 0 30px pink; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>Ananyaa 💕</h1>
+  <p>I have one very important question...</p>
+  <p style="font-size:22px;">Will you be my Valentine? 🥺</p>
+
+  <button id="yes" onclick="yesClicked()">Yes 💖</button>
+  <button id="no" onmouseover="moveNo()">No 😝</button>
+</div>
+
+<script>
+function moveNo() {
+  const noBtn = document.getElementById("no");
+  const x = Math.random() * (window.innerWidth - noBtn.clientWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.clientHeight);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
+
+function yesClicked() {
+  document.body.innerHTML = `
+    <div style="
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family:'Comic Sans MS', cursive;
+      text-align:center;
+      overflow:hidden;
+      color:white;
+    ">
+      <h1 style="
+        font-size:60px;
+        animation: glow 1s infinite alternate;
+      ">
+        YAYYYYY 💖🥰
+      </h1>
+      <p style="font-size:26px;">
+        I knew you'd say yes, Ananyaa ❤️<br>
+        Happy Valentine's Day 💕
+      </p>
+    </div>
+  `;
+
+  // Heart confetti
+  for (let i = 0; i < 50; i++) {
+    let heart = document.createElement("div");
+    heart.innerHTML = "💖";
+    heart.style.position = "absolute";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = "-20px";
+    heart.style.fontSize = Math.random() * 30 + 20 + "px";
+    heart.style.animation = "fall 3s linear forwards";
+    document.body.appendChild(heart);
+  }
+}
+</script>
+
+</body>
+</html>
